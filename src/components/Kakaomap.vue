@@ -45,7 +45,7 @@ const
   restaurantsInMap = ref<RestaurantInMap[]>([])
 
 const focusedMarker = ref<kakao.maps.Marker>(new kakao.maps.Marker({}))
-const lastShowedInfoWindow = ref<kakao.maps.InfoWindow>()
+const lastShowedInfoWindow = ref<[Restaurant, kakao.maps.InfoWindow]>()
 
 // Init
 watch(mapRef, (mapRef) => {
@@ -91,9 +91,9 @@ watch(map, (map) => {
       r.infoWindow = makeInfoWindow(r.restaurant)
     })
     kakao.maps.event.addListener(r.marker, 'click', function () {
-      lastShowedInfoWindow.value?.close()
+      lastShowedInfoWindow.value?.[1].close()
       r.infoWindow.open(map!, r.marker)
-      lastShowedInfoWindow.value = r.infoWindow
+      lastShowedInfoWindow.value = [r.restaurant, r.infoWindow]
       emit('focus', r.restaurant.id)
     })
   })
@@ -118,6 +118,9 @@ watch(props, ({ focusedRestaurant }) => {
       focusedRestaurantInMap.restaurant.position.longitude
     ))
     focusedMarker.value?.setMap(map.value!)
+    focusedRestaurantInMap.infoWindow.open(map.value!)
+    lastShowedInfoWindow.value?.[1].close()
+    lastShowedInfoWindow.value = [lastShowedInfoWindow.value?.[0]!, makeInfoWindow(lastShowedInfoWindow.value?.[0]!)]
   } else {
     focusedMarker.value?.setMap(null)
   }

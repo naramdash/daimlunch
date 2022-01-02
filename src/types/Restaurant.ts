@@ -1,8 +1,15 @@
+import { Position } from "./Position";
 import { RestaurantCategory } from "./RestaurantCategory";
+import { UUID } from "./UUID";
 
 type Restaurant = {
-  category: RestaurantCategory,
-  name: string,
-}
+  id: UUID;
+  category: RestaurantCategory;
+  name: string;
+  position: Position;
+  url?: string;
+};
 
-export { Restaurant }
+type RestaurantWithDistance = Restaurant & { distance: number };
+
+export { Restaurant, RestaurantWithDistance };

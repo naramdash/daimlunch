@@ -1,49 +1,314 @@
-import { Restaurant } from "../types/Restaurant"
-import { RestaurantCategory } from "../types/RestaurantCategory"
+import { Restaurant } from "../types/Restaurant";
+import { RestaurantCategory } from "../types/RestaurantCategory";
 
 const Restaurants: Restaurant[] = [
-  { name: "질할브로스(역삼점)", category: RestaurantCategory.Western }
-  , { name: "뚜레쥬르(역삼역점)", category: RestaurantCategory.CafeBakeryFastFood }
-  , { name: "신가네솥뚜껑볶음밥", category: RestaurantCategory.Korean }
-  , { name: "전주 콩뿌리콩나물국밥(파이낸스점)", category: RestaurantCategory.Korean }
-  , { name: "호돌이반점", category: RestaurantCategory.Chinese }
-  , { name: "카페벨르오", category: RestaurantCategory.CafeBakeryFastFood }
-  , { name: "고향마을", category: RestaurantCategory.Korean }
-  , { name: "룽푸청마라탕(역삼점)", category: RestaurantCategory.Chinese }
-  , { name: "함초마을", category: RestaurantCategory.Korean }
-  , { name: "타코벨(역삼점)", category: RestaurantCategory.CafeBakeryFastFood }
-  , { name: "주시브로스(역삼점)", category: RestaurantCategory.CafeBakeryFastFood }
-  , { name: "이화수육개장(역삼점)", category: RestaurantCategory.Korean }
-  , { name: "스노우폭스(역삼GFC점)", category: RestaurantCategory.Japanese }
-  , { name: "카페마마스(역삼점)", category: RestaurantCategory.CafeBakeryFastFood }
-  , { name: "사보텐(GFC점)", category: RestaurantCategory.Japanese }
-  , { name: "샐러디(역삼점)", category: RestaurantCategory.Western }
-  , { name: "홍수계찜닭", category: RestaurantCategory.Korean }
-  , { name: "부산아지매국밥(역삼점)", category: RestaurantCategory.Korean }
-  , { name: "크레이지후라이(역삼점)", category: RestaurantCategory.SnackBar }
-  , { name: "중리", category: RestaurantCategory.Chinese }
-  , { name: "바스버거(역삼점)", category: RestaurantCategory.CafeBakeryFastFood }
-  , { name: "파브리끄(역삼GFC점)", category: RestaurantCategory.CafeBakeryFastFood }
-  , { name: "투썸플레이스(역삼성홍타워점)", category: RestaurantCategory.CafeBakeryFastFood }
-  , { name: "역삼동참치", category: RestaurantCategory.Japanese }
-  , { name: "파리바게뜨(역삼포스틸점)", category: RestaurantCategory.CafeBakeryFastFood }
-  , { name: "탄(역삼)", category: RestaurantCategory.Japanese }
-  , { name: "한국순대", category: RestaurantCategory.Korean }
-  , { name: "센트럴커피", category: RestaurantCategory.CafeBakeryFastFood }
-  , { name: "이태리부대찌개(역삼점)", category: RestaurantCategory.Korean }
-  , { name: "치킨공식", category: RestaurantCategory.Korean }
-  , { name: "9카페(역삼3호점)", category: RestaurantCategory.CafeBakeryFastFood }
-  , { name: "gs25(역삼이담점)", category: RestaurantCategory.ConvenienceStore }
-  , { name: "파리바게트 역삼스타점", category: RestaurantCategory.CafeBakeryFastFood }
-  , { name: "종로김밥(역삼역점)", category: RestaurantCategory.SnackBar }
-  , { name: "더치앤빈(역삼점)", category: RestaurantCategory.CafeBakeryFastFood }
-  , { name: "담뿍화로된장찌개(역삼점)", category: RestaurantCategory.Korean }
-  , { name: "하노이스토리", category: RestaurantCategory.Asian }
-  , { name: "GRILL640", category: RestaurantCategory.Korean }
-  , { name: "새마을식당(역삼점)", category: RestaurantCategory.Korean }
-  , { name: "모미모미(역삼)", category: RestaurantCategory.Japanese }
-  , { name: "barcode(점심)", category: RestaurantCategory.Western }
-]
+  {
+    id: crypto.randomUUID(),
+    name: "질할브로스(역삼점)",
+    category: RestaurantCategory.Western,
+    url: "https://www.facebook.com/JilhalBros/",
+    position: {
+      latitude: 37.50093615761228,
+      longitude: 127.03612582141128,
+    },
+  },
+  {
+    id: crypto.randomUUID(),
+    name: "뚜레쥬르(역삼역점)",
+    category: RestaurantCategory.CafeBakeryFastFood,
+    url: undefined,
+    position: {
+      latitude: 37.49914587572839,
+      longitude: 127.03453988310854,
+    },
+  },
+  {
+    id: crypto.randomUUID(),
+    name: "신가네솥뚜껑볶음밥",
+    category: RestaurantCategory.Korean,
+    url: "https://minlovejin.tistory.com/1567",
+    position: { latitude: 37.50080524402504, longitude: 127.03567762890744 },
+  },
+  {
+    id: crypto.randomUUID(),
+    name: "전주 콩뿌리콩나물국밥(파이낸스점)",
+    category: RestaurantCategory.Korean,
+    url: undefined,
+    position: {
+      latitude: 37.49906209619665,
+      longitude: 127.0362236155211,
+    },
+  },
+  {
+    id: crypto.randomUUID(),
+    name: "호돌이반점",
+    category: RestaurantCategory.Chinese,
+    url: undefined,
+    position: {
+      latitude: 37.50074548736116,
+      longitude: 127.03564217802855,
+    },
+  },
+  {
+    id: crypto.randomUUID(),
+    name: "카페벨르오",
+    category: RestaurantCategory.CafeBakeryFastFood,
+    url: "https://belleohair.modoo.at/",
+    position: { latitude: 37.49885198664205, longitude: 127.03422103197742 },
+  },
+  {
+    id: crypto.randomUUID(),
+    name: "고향마을",
+    category: RestaurantCategory.Korean,
+    url: undefined,
+    position: { latitude: 37.500651494827636, longitude: 127.03455451824748 },
+  },
+  {
+    id: crypto.randomUUID(),
+    name: "룽푸청마라탕(역삼점)",
+    category: RestaurantCategory.Chinese,
+    url: undefined,
+    position: { latitude: 37.498957852034984, longitude: 127.03454989463192 },
+  },
+  {
+    id: crypto.randomUUID(),
+    name: "함초마을",
+    category: RestaurantCategory.Korean,
+    url: undefined,
+    position: { latitude: 37.500283139115, longitude: 127.03412325216328 },
+  },
+  {
+    id: crypto.randomUUID(),
+    name: "타코벨(역삼점)",
+    category: RestaurantCategory.CafeBakeryFastFood,
+    url: "http://koreatacobell.com/",
+    position: { latitude: 37.49899754043816, longitude: 127.03646617025099 },
+  },
+  {
+    id: crypto.randomUUID(),
+    name: "주시브로스(역삼점)",
+    category: RestaurantCategory.CafeBakeryFastFood,
 
+    url: undefined,
+    position: { latitude: 37.500181918509725, longitude: 127.03658861118285 },
+  },
+  {
+    id: crypto.randomUUID(),
+    name: "이화수육개장(역삼점)",
+    category: RestaurantCategory.Korean,
+    url: "http://www.ihwasoo.com/",
+    position: { latitude: 37.49898492202103, longitude: 127.03571920922748 },
+  },
+  {
+    id: crypto.randomUUID(),
+    name: "스노우폭스(역삼GFC점)",
+    category: RestaurantCategory.Japanese,
+    url: "https://www.snowfoxkorea.com/",
+    position: { latitude: 37.49998771905495, longitude: 127.03661453331792 },
+  },
+  {
+    id: crypto.randomUUID(),
+    name: "카페마마스(역삼점)",
+    category: RestaurantCategory.CafeBakeryFastFood,
 
-export { Restaurants }
+    url: "http://cafemamas.co.kr/store_36.php",
+    position: { latitude: 37.498944850963845, longitude: 127.03681367313813 },
+  },
+  {
+    id: crypto.randomUUID(),
+    name: "사보텐(GFC점)",
+    category: RestaurantCategory.Japanese,
+    url: undefined,
+    position: { latitude: 37.499889368715245, longitude: 127.03654876446998 },
+  },
+  {
+    id: crypto.randomUUID(),
+    name: "샐러디(역삼점)",
+    category: RestaurantCategory.Western,
+    url: "http://salady.com/",
+    position: { latitude: 37.49890860077893, longitude: 127.03501350872781 },
+  },
+  {
+    id: crypto.randomUUID(),
+    name: "홍수계찜닭",
+    category: RestaurantCategory.Korean,
+    url: "https://www.hongsugye.com/",
+    position: { latitude: 37.50010489169241, longitude: 127.03671508781511 },
+  },
+  {
+    id: crypto.randomUUID(),
+    name: "부산아지매국밥(역삼점)",
+    category: RestaurantCategory.Korean,
+    url: "http://www.busanajimae.com/",
+    position: { latitude: 37.498941989936164, longitude: 127.03707107781136 },
+  },
+  {
+    id: crypto.randomUUID(),
+    name: "크레이지후라이(역삼점)",
+    category: RestaurantCategory.SnackBar,
+    url: "http://www.crazyfry.co.kr/",
+    position: { latitude: 37.499676149439786, longitude: 127.03492594020463 },
+  },
+  {
+    id: crypto.randomUUID(),
+    name: "중리",
+    category: RestaurantCategory.Chinese,
+    url: undefined,
+    position: { latitude: 37.49870420388673, longitude: 127.03473459090472 },
+  },
+  {
+    id: crypto.randomUUID(),
+    name: "바스버거(역삼점)",
+    category: RestaurantCategory.CafeBakeryFastFood,
+    url: "http://basburger.net/",
+    position: { latitude: 37.499626975585436, longitude: 127.03580669210476 },
+  },
+  {
+    id: crypto.randomUUID(),
+    name: "파브리끄(역삼GFC점)",
+    category: RestaurantCategory.CafeBakeryFastFood,
+
+    url: "https://www.instagram.com/fabrique_coffeeroasters/",
+    position: { latitude: 37.498788427724044, longitude: 127.03660243305731 },
+  },
+  {
+    id: crypto.randomUUID(),
+    name: "투썸플레이스(역삼성홍타워점)",
+    category: RestaurantCategory.CafeBakeryFastFood,
+
+    url: "https://www.twosome.co.kr/main.do",
+    position: { latitude: 37.49962527646954, longitude: 127.03430634688291 },
+  },
+  {
+    id: crypto.randomUUID(),
+    name: "역삼동참치",
+    category: RestaurantCategory.Japanese,
+    url: undefined,
+    position: { latitude: 37.49874388915851, longitude: 127.03457402805833 },
+  },
+  {
+    id: crypto.randomUUID(),
+    name: "파리바게뜨(역삼포스틸점)",
+    category: RestaurantCategory.CafeBakeryFastFood,
+
+    url: "https://www.paris.co.kr/",
+    position: { latitude: 37.49937584206819, longitude: 127.03430785188688 },
+  },
+  {
+    id: crypto.randomUUID(),
+    name: "탄(역삼)",
+    category: RestaurantCategory.Japanese,
+    url: undefined,
+    position: { latitude: 37.500839222241964, longitude: 127.03959552376564 },
+  },
+  {
+    id: crypto.randomUUID(),
+    name: "한국순대",
+    category: RestaurantCategory.Korean,
+    url: undefined,
+    position: { latitude: 37.498698305383016, longitude: 127.03759522766816 },
+  },
+  {
+    id: crypto.randomUUID(),
+    name: "센트럴커피",
+    category: RestaurantCategory.CafeBakeryFastFood,
+    url: undefined,
+    position: { latitude: 37.498766150498135, longitude: 127.0342679795962 },
+  },
+  {
+    id: crypto.randomUUID(),
+    name: "이태리부대찌개(역삼점)",
+    category: RestaurantCategory.Korean,
+    url: "http://www.italybudae.co.kr/",
+    position: { latitude: 37.49934627967622, longitude: 127.03494012281655 },
+  },
+  {
+    id: crypto.randomUUID(),
+    name: "치킨공식",
+    category: RestaurantCategory.Korean,
+    url: "https://www.instagram.com/chickengongsik/",
+    position: { latitude: 37.49883858590404, longitude: 127.03662450081633 },
+  },
+  {
+    id: crypto.randomUUID(),
+    name: "9카페(역삼3호점)",
+    category: RestaurantCategory.CafeBakeryFastFood,
+    url: undefined,
+    position: { latitude: 37.49823296575211, longitude: 127.03402153223219 },
+  },
+  {
+    id: crypto.randomUUID(),
+    name: "gs25(역삼이담점)",
+    category: RestaurantCategory.ConvenienceStore,
+    url: undefined,
+    position: { latitude: 37.498508255596256, longitude: 127.0340670807848 },
+  },
+  {
+    id: crypto.randomUUID(),
+    name: "파리바게트 역삼스타점",
+    category: RestaurantCategory.CafeBakeryFastFood,
+
+    url: "https://www.paris.co.kr/",
+    position: { latitude: 37.49909707981411, longitude: 127.03736594798299 },
+  },
+  {
+    id: crypto.randomUUID(),
+    name: "종로김밥(역삼역점)",
+    category: RestaurantCategory.SnackBar,
+    url: "http://www.jongrokimbap.co.kr/",
+    position: { latitude: 37.49848138030982, longitude: 127.03500026909745 },
+  },
+  {
+    id: crypto.randomUUID(),
+    name: "더치앤빈(역삼점)",
+    category: RestaurantCategory.CafeBakeryFastFood,
+    url: "https://blog.naver.com/dutchbean2",
+    position: { latitude: 37.49932638380195, longitude: 127.03603075179976 },
+  },
+  {
+    id: crypto.randomUUID(),
+    name: "담뿍화로된장찌개(역삼점)",
+    category: RestaurantCategory.Korean,
+    url: undefined,
+    position: { latitude: 37.49863039547033, longitude: 127.03721787663848 },
+  },
+  {
+    id: crypto.randomUUID(),
+    name: "하노이스토리",
+    category: RestaurantCategory.Asian,
+    url: undefined,
+    position: { latitude: 37.49868334884692, longitude: 127.03581954324783 },
+  },
+  {
+    id: crypto.randomUUID(),
+    name: "GRILL640",
+    category: RestaurantCategory.Korean,
+    url: undefined,
+    position: { latitude: 37.49867307927907, longitude: 127.03403271428537 },
+  },
+  {
+    id: crypto.randomUUID(),
+    name: "새마을식당(역삼점)",
+    category: RestaurantCategory.Korean,
+    url: "https://www.newmaul.com/",
+    position: { latitude: 37.49855113695769, longitude: 127.03531779895961 },
+  },
+  {
+    id: crypto.randomUUID(),
+    name: "모미모미(역삼)",
+    category: RestaurantCategory.Japanese,
+    url: undefined,
+    position: { latitude: 37.49839612607818, longitude: 127.03693133519737 },
+  },
+  {
+    id: crypto.randomUUID(),
+    name: "barcode(점심)",
+    category: RestaurantCategory.Western,
+    url: undefined,
+    position: { latitude: 37.49799081899695, longitude: 127.0342730162293 },
+  },
+];
+
+console.log(Restaurants);
+
+export { Restaurants };

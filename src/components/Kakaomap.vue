@@ -44,10 +44,7 @@ const
   map = ref<kakao.maps.Map>(),
   restaurantsInMap = ref<RestaurantInMap[]>([])
 
-const focusedMarker = new kakao.maps.Marker({
-  // zIndex: 100
-})
-
+const focusedMarker = ref<kakao.maps.Marker>(new kakao.maps.Marker({}))
 
 // Init
 watch(mapRef, (mapRef) => {
@@ -112,13 +109,13 @@ watch(props, ({ focusedRestaurant }) => {
   const focusedRestaurantInMap = restaurantsInMap.value.find(r => r.restaurant.id === focusedRestaurant?.id)
 
   if (focusedRestaurantInMap) {
-    focusedMarker.setPosition(new kakao.maps.LatLng(
+    focusedMarker.value?.setPosition(new kakao.maps.LatLng(
       focusedRestaurantInMap.restaurant.position.latitude,
       focusedRestaurantInMap.restaurant.position.longitude
     ))
-    focusedMarker.setMap(map.value!)
+    focusedMarker.value?.setMap(map.value!)
   } else {
-    focusedMarker.setMap(null)
+    focusedMarker.value?.setMap(null)
   }
 })
 

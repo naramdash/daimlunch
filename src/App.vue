@@ -30,7 +30,6 @@ function filterRestaurants(categories: RestaurantCategory[], distance: number) {
 
 function onFocus(id: UUID) {
   focusedRestaurant.value = distanceCalcedRestaurants.value.find(dr => dr.id === id)
-  console.log(focusedRestaurant.value)
 }
 
 function onUnfocus() {

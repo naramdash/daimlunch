@@ -309,6 +309,4 @@ const Restaurants: Restaurant[] = [
   },
 ];
 
-console.log(Restaurants);
-
 export { Restaurants };

@@ -20,6 +20,7 @@ const distanceCalcedRestaurants = computed<RestaurantWithDistance[]>(() => Resta
 
 const filteredRestaurants = ref(distanceCalcedRestaurants.value)
 const focusedRestaurant = ref<Restaurant>()
+const isSpinning = ref(false)
 
 function filterRestaurants(categories: RestaurantCategory[], distance: number) {
   const categoryFiltered = categories.length === 0
@@ -35,6 +36,14 @@ function onFocus(id: UUID) {
 
 function onUnfocus() {
   focusedRestaurant.value = undefined
+}
+
+function onSpinStart() {
+  isSpinning.value = true
+}
+
+function onSpinEnd() {
+  isSpinning.value = false
 }
 
 </script>
@@ -55,11 +64,14 @@ function onUnfocus() {
       @focus="onFocus"
       @unfocus="onUnfocus"
     />
-    <Filter @change="filterRestaurants" />
+    <Filter :isSpinning="isSpinning" @change="filterRestaurants" />
     <Result
+      :isSpinning="isSpinning"
       :restaurants="filteredRestaurants"
       :focused-restaurant="focusedRestaurant"
       @focus="onFocus"
+      @spin-start="onSpinStart"
+      @spin-end="onSpinEnd"
     />
   </div>
 </template>

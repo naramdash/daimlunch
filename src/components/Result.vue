@@ -10,12 +10,15 @@ const
   IntervalTotalTime = 3500
 
 const props = defineProps<{
+  isSpinning: boolean,
   restaurants: RestaurantWithDistance[],
   focusedRestaurant?: Restaurant
 }>()
 
 const emit = defineEmits<{
   (event: 'focus', id: UUID): void
+  (event: 'spinStart'): void
+  (event: 'spinEnd'): void
 }>()
 
 const spinTempRestaurant = ref<Restaurant>()
@@ -33,6 +36,8 @@ function spinning() {
   window.crypto.getRandomValues(array);
   const answerIndex = array[0] % props.restaurants.length
 
+  emit('spinStart')
+
   let index = 0
   spinTimeCount.value = 0
   const intervalId = setInterval(() => {
@@ -40,6 +45,7 @@ function spinning() {
       clearInterval(intervalId)
       spinTempRestaurant.value = undefined
       emit('focus', props.restaurants[index].id)
+      emit('spinEnd')
       return
     }
 
@@ -54,13 +60,8 @@ function spinning() {
 </script>
 
 <template>
-  <button
-    class="spinner"
-    type="button"
-    :disabled="spinTempRestaurant !== undefined"
-    @click="spinning"
-  >🎊🎊🎊SPINNER🎡🎡🎡</button>
-  <progress v-if="spinTempRestaurant" :value="spinTimeCount" :max="IntervalTotalTime"></progress>
+  <button class="spinner" type="button" :disabled="isSpinning" @click="spinning">🎊🎊🎊SPINNER🎡🎡🎡</button>
+  <progress v-if="isSpinning" :value="spinTimeCount" :max="IntervalTotalTime"></progress>
   <table>
     <thead>
       <tr>

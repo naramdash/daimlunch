@@ -59,7 +59,7 @@ function spinning() {
     type="button"
     :disabled="spinTempRestaurant !== undefined"
     @click="spinning"
-  >🎊🎊🎊🎊🎊🎊🎊🎊🎊🎊SPINNER🎡🎡🎡🎡🎡🎡🎡🎡🎡🎡🎡</button>
+  >🎊🎊🎊SPINNER🎡🎡🎡</button>
   <progress v-if="spinTempRestaurant" :value="spinTimeCount" :max="IntervalTotalTime"></progress>
   <table>
     <thead>

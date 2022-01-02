@@ -120,7 +120,8 @@ watch(props, ({ focusedRestaurant }) => {
     focusedMarker.value?.setMap(map.value!)
     focusedRestaurantInMap.infoWindow.open(map.value!)
     lastShowedInfoWindow.value?.[1].close()
-    lastShowedInfoWindow.value = [lastShowedInfoWindow.value?.[0]!, makeInfoWindow(lastShowedInfoWindow.value?.[0]!)]
+    lastShowedInfoWindow.value = [focusedRestaurantInMap.restaurant, focusedRestaurantInMap.infoWindow]
+    map.value?.panTo(new kakao.maps.LatLng(focusedRestaurantInMap.restaurant.position.latitude, focusedRestaurantInMap.restaurant.position.longitude))
   } else {
     focusedMarker.value?.setMap(null)
   }

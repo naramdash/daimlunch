@@ -43,12 +43,10 @@ function spinning() {
       return
     }
 
-    if (index >= props.restaurants.length)
-      index = 0;
-
     spinTempRestaurant.value = props.restaurants[index]
 
     index += 1
+    if (index >= props.restaurants.length) index = 0;
     spinTimeCount.value += IntervalTime
   }, IntervalTime);
 }

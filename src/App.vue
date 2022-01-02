@@ -11,6 +11,7 @@ import { DaimPosition } from './data/Daim';
 import { Restaurant, RestaurantWithDistance } from './types/Restaurant';
 import { UUID } from './types/UUID';
 import VueLogo from './assets/vuelogo.png'
+import GitHub from './components/GitHub.vue';
 
 const distanceCalcedRestaurants = computed<RestaurantWithDistance[]>(() => Restaurants.map(r => {
   const distance = calcCrow(DaimPosition, r.position)
@@ -39,6 +40,7 @@ function onUnfocus() {
 </script>
 
 <template>
+  <GitHub />
   <div class="container">
     <header>
       <h1>Daim Lunch</h1>
@@ -77,5 +79,6 @@ header {
 
 header div img {
   height: 50px;
+  margin-right: 70px;
 }
 </style>

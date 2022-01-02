@@ -11,7 +11,6 @@ import { DaimPosition } from './data/Daim';
 import { Restaurant, RestaurantWithDistance } from './types/Restaurant';
 import { UUID } from './types/UUID';
 import VueLogo from './assets/vuelogo.png'
-import KakaomapLogo from './assets/kakaomaplogo.png'
 
 const distanceCalcedRestaurants = computed<RestaurantWithDistance[]>(() => Restaurants.map(r => {
   const distance = calcCrow(DaimPosition, r.position)
@@ -46,7 +45,6 @@ function onUnfocus() {
       <h1>Daim Lunch</h1>
       <div>
         <img :src="VueLogo" title="FrameworkDependency" />
-        <img :src="KakaomapLogo" title="MapDependency" />
       </div>
     </header>
     <Kakaomap
@@ -80,12 +78,5 @@ header {
 
 header div img {
   height: 50px;
-}
-
-header div :first-child {
-  margin-right: 10px;
-}
-header div img:nth-child(2) {
-  background-color: black;
 }
 </style>

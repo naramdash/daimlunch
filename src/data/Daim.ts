@@ -1,8 +1,8 @@
-import { Position } from "../types/Position"
+import { Position } from "../types/Position";
 
 const DaimPosition: Position = {
-  latitude: 37.4990144823587,
-  longitude: 127.03574108230633
-}
+  latitude: 37.490447808900534,
+  longitude: 127.00979231393096,
+};
 
-export { DaimPosition }
+export { DaimPosition };

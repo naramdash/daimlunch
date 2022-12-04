@@ -52,27 +52,16 @@ function onSpinEnd() {
   <GitHub />
   <div class="container">
     <header>
-      <h1>Daim Lunch</h1>
+      <h1>Daim Lunch (pre)</h1>
       <div>
         <img :src="VueLogo" title="FrameworkDependency" />
       </div>
     </header>
-    <Kakaomap
-      :restaurants="distanceCalcedRestaurants"
-      :filtered-restaurants="filteredRestaurants"
-      :focused-restaurant="focusedRestaurant"
-      @focus="onFocus"
-      @unfocus="onUnfocus"
-    />
+    <Kakaomap :restaurants="distanceCalcedRestaurants" :filtered-restaurants="filteredRestaurants"
+      :focused-restaurant="focusedRestaurant" @focus="onFocus" @unfocus="onUnfocus" />
     <Filter :isSpinning="isSpinning" @change="filterRestaurants" />
-    <Result
-      :isSpinning="isSpinning"
-      :restaurants="filteredRestaurants"
-      :focused-restaurant="focusedRestaurant"
-      @focus="onFocus"
-      @spin-start="onSpinStart"
-      @spin-end="onSpinEnd"
-    />
+    <Result :isSpinning="isSpinning" :restaurants="filteredRestaurants" :focused-restaurant="focusedRestaurant"
+      @focus="onFocus" @spin-start="onSpinStart" @spin-end="onSpinEnd" />
   </div>
 </template>
 

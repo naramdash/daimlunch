@@ -6,4 +6,4 @@ declare global {
 
 type UUID = string;
 
-export { UUID };
+export type { UUID };

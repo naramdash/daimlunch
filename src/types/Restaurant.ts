@@ -1,6 +1,6 @@
 import { Position } from "./Position";
 import { RestaurantCategory } from "./RestaurantCategory";
-import { UUID } from "./UUID";
+import type { UUID } from "./UUID";
 
 type Restaurant = {
   id: UUID;
@@ -12,4 +12,4 @@ type Restaurant = {
 
 type RestaurantWithDistance = Restaurant & { distance: number };
 
-export { Restaurant, RestaurantWithDistance };
+export type { Restaurant, RestaurantWithDistance };

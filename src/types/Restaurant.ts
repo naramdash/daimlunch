@@ -8,6 +8,9 @@ type Restaurant = {
   name: string;
   position: Position;
   url?: string;
+
+  address: string;
+  phone: string;
 };
 
 type RestaurantWithDistance = Restaurant & { distance: number };

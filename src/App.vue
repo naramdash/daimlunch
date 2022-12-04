@@ -3,35 +3,28 @@ import Kakaomap from './components/Kakaomap.vue';
 import Filter from './components/Filter.vue';
 import Result from './components/Result.vue';
 
-import { computed, ref } from 'vue';
-import { Restaurants } from './data/Restaurants'
+import { ref } from 'vue';
+import { DistanceCalcedRestaurants } from './data/Restaurants'
 import { RestaurantCategory } from './types/RestaurantCategory';
-import { calcCrow } from './utils/distance';
-import { DaimPosition } from './data/Daim';
-import { Restaurant, RestaurantWithDistance } from './types/Restaurant';
+import { Restaurant } from './types/Restaurant';
 import { UUID } from './types/UUID';
 import VueLogo from './assets/vuelogo.png'
 import GitHub from './components/GitHub.vue';
 
-const distanceCalcedRestaurants = computed<RestaurantWithDistance[]>(() => Restaurants.map(r => {
-  const distance = calcCrow(DaimPosition, r.position)
-  return { ...r, distance }
-}))
-
-const filteredRestaurants = ref(distanceCalcedRestaurants.value)
+const filteredRestaurants = ref(DistanceCalcedRestaurants)
 const focusedRestaurant = ref<Restaurant>()
 const isSpinning = ref(false)
 
 function filterRestaurants(categories: RestaurantCategory[], distance: number) {
   const categoryFiltered = categories.length === 0
-    ? distanceCalcedRestaurants.value
-    : distanceCalcedRestaurants.value.filter(r => categories.some(c => c === r.category))
+    ? DistanceCalcedRestaurants
+    : DistanceCalcedRestaurants.filter(r => categories.some(c => c === r.category))
   const distancedFiltered = categoryFiltered.filter(r => r.distance <= distance)
   filteredRestaurants.value = distancedFiltered
 }
 
 function onFocus(id: UUID) {
-  focusedRestaurant.value = distanceCalcedRestaurants.value.find(dr => dr.id === id)
+  focusedRestaurant.value = DistanceCalcedRestaurants.find(dr => dr.id === id)
 }
 
 function onUnfocus() {
@@ -52,15 +45,15 @@ function onSpinEnd() {
   <GitHub />
   <div class="container">
     <header>
-      <h1>Daim Lunch (pre)</h1>
+      <h1>Daim Lunch - Seocho</h1>
       <div>
         <img :src="VueLogo" title="FrameworkDependency" />
       </div>
     </header>
-    <Kakaomap :restaurants="distanceCalcedRestaurants" :filtered-restaurants="filteredRestaurants"
-      :focused-restaurant="focusedRestaurant" @focus="onFocus" @unfocus="onUnfocus" />
+    <Kakaomap :restaurants="DistanceCalcedRestaurants" :filteredRestaurants="filteredRestaurants"
+      :focusedRestaurant="focusedRestaurant" @focus="onFocus" @unfocus="onUnfocus" />
     <Filter :isSpinning="isSpinning" @change="filterRestaurants" />
-    <Result :isSpinning="isSpinning" :restaurants="filteredRestaurants" :focused-restaurant="focusedRestaurant"
+    <Result :isSpinning="isSpinning" :restaurants="filteredRestaurants" :focusedRestaurant="focusedRestaurant"
       @focus="onFocus" @spin-start="onSpinStart" @spin-end="onSpinEnd" />
   </div>
 </template>

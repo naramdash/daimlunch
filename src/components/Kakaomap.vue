@@ -3,6 +3,7 @@ import { ref, watch } from 'vue';
 import { DaimPosition } from '../data/Daim';
 import { Restaurant } from '../types/Restaurant';
 import RedMarker from '../assets/redmarker.png'
+import GreenMarker from '../assets/greenmarker.png'
 import OrangeMarker from '../assets/orangemarker.png'
 import { humanizeRestaurantCategory } from '../utils/humize';
 import { UUID } from '../types/UUID';
@@ -72,7 +73,7 @@ watch(map, (map) => {
       title: r.name,
       clickable: true,
       map,
-      image: new kakao.maps.MarkerImage(RedMarker, RestaurantMarkerSize),
+      image: new kakao.maps.MarkerImage(r.category === '56111' ? RedMarker : GreenMarker, RestaurantMarkerSize),
       position: new kakao.maps.LatLng(r.position.latitude, r.position.longitude)
     }),
     infoWindow: makeInfoWindow(r)
@@ -145,15 +146,18 @@ function setMapCenterToDaim() {
 .mapWrapper {
   position: relative;
   min-width: 100%;
-  height: 350px;
+  min-height: 400px;
+  height: 40vh;
 
   margin-left: auto;
   margin-right: auto;
 }
+
 .map {
   width: 100%;
   height: 100%;
 }
+
 .customControls {
   position: absolute;
   top: 20px;
@@ -165,6 +169,7 @@ function setMapCenterToDaim() {
   background: #fff;
   background: linear-gradient(#fff, #e6e6e6);
 }
+
 .customControls button:hover {
   background: #f5f5f5;
   background: linear-gradient(#f5f5f5, #e3e3e3);

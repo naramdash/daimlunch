@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
-import { RestaurantCategory } from '../types/RestaurantCategory';
+import { RestaurantCategories, RestaurantCategory } from '../types/RestaurantCategory';
 import { humanizeRestaurantCategory } from '../utils/humize'
 
 const
   RangeMin = 50,
-  RangeMax = 400,
-  RangeStep = 25
+  RangeMax = 1500,
+  RangeStep = 50
 
 const props = defineProps<{
   isSpinning: boolean
@@ -30,14 +30,8 @@ watch([categories, distance], (([categories, distance]) => {
     <fieldset>
       <legend>업종</legend>
 
-      <label v-for="category in RestaurantCategory">
-        <input
-          type="checkbox"
-          name="category"
-          :disabled="props.isSpinning"
-          :value="category"
-          v-model="categories"
-        />
+      <label v-for="category in RestaurantCategories">
+        <input type="checkbox" name="category" :disabled="props.isSpinning" :value="category" v-model="categories" />
         {{ humanizeRestaurantCategory(category) }}
       </label>
     </fieldset>
@@ -51,15 +45,8 @@ watch([categories, distance], (([categories, distance]) => {
         <span>{{ RangeMax }}m</span>
       </div>
       <div>
-        <input
-          type="range"
-          :disabled="props.isSpinning"
-          :min="RangeMin"
-          :max="RangeMax"
-          :step="RangeStep"
-          list="steplist"
-          v-model.number="distance"
-        />
+        <input type="range" :disabled="props.isSpinning" :min="RangeMin" :max="RangeMax" :step="RangeStep"
+          list="steplist" v-model.number="distance" />
         <datalist id="steplist">
           <option v-for="n in ((RangeMax) / RangeStep)">{{ n * RangeStep }}</option>
         </datalist>

@@ -1,12 +1,59 @@
-enum RestaurantCategory {
-  Korean = "Korean",
-  Western = "Western",
-  Chinese = "Chinese",
-  Japanese = "Japanese",
-  SnackBar = "SnackBar",
-  CafeBakeryFastFood = "CafeBakeryFastFood",
-  Asian = "Asian",
-  ConvenienceStore = "ConvenienceStore",
-}
+type RestaurantCategory =
+  | "56111" // 한식 일반 음식점업
+  | "56112" // 한식 면 요리 전문점
+  | "56113" // 한식 육류 요리 전문점
+  | "56114" // 한식 해산물 요리 전문점
 
-export { RestaurantCategory }
+  | "56121" // 중식 음식점업
+
+  | "56122" // 일식 음식점업
+
+  | "56123" // 서양식 음식점업
+
+  | "56129" // 기타 외국식 음식점업
+
+  | "56130" // 기관 구내식당업
+  | "56141" // 출장 음식 서비스업
+  | "56142" // 이동 음식점업
+
+  | "56191" // 제과점업
+
+  | "56192" // 피자, 햄버거, 샌드위치 및 유사 음식점업
+  | "56193" // 치킨 전문점
+
+  | "56194" // 김밥 및 기타 간이 음식점업
+  | "56199" // 간이 음식 포장 판매 전문점
+  
+  | "56211" // 일반 유흥 주점업
+  | "56213" // 생맥주 전문점
+  | "56219" // 기타 주점업
+  
+  | "56221" // 커피 전문점
+  | "56229"; // 기타 비알코올 음료점업
+
+const RestaurantCategories: readonly RestaurantCategory[] = [
+  "56111",
+  "56112",
+  "56113",
+  "56114",
+  "56121",
+  "56122",
+  "56123",
+  "56129",
+  "56130",
+  "56141",
+  "56142",
+  "56191",
+  "56192",
+  "56193",
+  "56194",
+  "56199",
+  "56211",
+  "56213",
+  "56219",
+  "56221",
+  "56229",
+];
+
+export type { RestaurantCategory };
+export { RestaurantCategories };

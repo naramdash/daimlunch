@@ -8,10 +8,6 @@ const
   RangeMax = 1500,
   RangeStep = 50
 
-const props = defineProps<{
-  isSpinning: boolean
-}>()
-
 const emit = defineEmits<{
   (event: "change", categories: RestaurantCategory[], distance: number): void
 }>()
@@ -31,7 +27,7 @@ watch([categories, distance], (([categories, distance]) => {
       <legend>업종</legend>
 
       <label v-for="category in RestaurantCategories">
-        <input type="checkbox" name="category" :disabled="props.isSpinning" :value="category" v-model="categories" />
+        <input type="checkbox" name="category" :value="category" v-model="categories" />
         {{ humanizeRestaurantCategory(category) }}
       </label>
     </fieldset>
@@ -45,8 +41,8 @@ watch([categories, distance], (([categories, distance]) => {
         <span>{{ RangeMax }}m</span>
       </div>
       <div>
-        <input type="range" :disabled="props.isSpinning" :min="RangeMin" :max="RangeMax" :step="RangeStep"
-          list="steplist" v-model.number="distance" />
+        <input type="range" :min="RangeMin" :max="RangeMax" :step="RangeStep" list="steplist"
+          v-model.number="distance" />
         <datalist id="steplist">
           <option v-for="n in ((RangeMax) / RangeStep)">{{ n * RangeStep }}</option>
         </datalist>

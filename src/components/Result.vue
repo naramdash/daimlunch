@@ -1,64 +1,23 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import { Position } from '../types/Position';
+import { toRef, watch } from 'vue';
 import { Restaurant, RestaurantWithDistance } from '../types/Restaurant';
 import { UUID } from '../types/UUID';
 import { humanizeRestaurantCategory } from '../utils/humize'
 
-const
-  IntervalTime = 2,
-  IntervalTotalTime = 3000
-
 const props = defineProps<{
-  isSpinning: boolean,
   restaurants: RestaurantWithDistance[],
   focusedRestaurant?: Restaurant
 }>()
 
-const emit = defineEmits<{
-  (event: 'focus', id: UUID): void
-  (event: 'spinStart'): void
-  (event: 'spinEnd'): void
-}>()
+const emit = defineEmits<{ (event: 'focus', id: UUID): void }>()
 
-const spinTempRestaurant = ref<Restaurant>()
-const spinTimeCount = ref(0)
-
-function openFindWayTo(name: string, position: Position) {
-  window.open(`https://map.kakao.com/link/to/${name},${position.latitude},${position.longitude}`)
-}
-
-function spinning() {
-  const array = new Uint32Array(10);
-  window.crypto.getRandomValues(array);
-  const answerIndex = array[0] % props.restaurants.length
-
-  emit('spinStart')
-
-  let index = 0
-  spinTimeCount.value = 0
-  const intervalId = setInterval(() => {
-    if (spinTimeCount.value > IntervalTotalTime && index === answerIndex) {
-      clearInterval(intervalId)
-      spinTempRestaurant.value = undefined
-      emit('focus', props.restaurants[index].id)
-      emit('spinEnd')
-      return
-    }
-
-    spinTempRestaurant.value = props.restaurants[index]
-
-    index += 1
-    if (index >= props.restaurants.length) index = 0;
-    spinTimeCount.value += IntervalTime
-  }, IntervalTime);
-}
-
+watch(toRef(props, 'focusedRestaurant'), () => {
+  if (props.focusedRestaurant)
+    document.getElementById(props.focusedRestaurant.id)?.scrollIntoView({ block: 'center' })
+})
 </script>
 
 <template>
-  <button class="spinner" type="button" :disabled="isSpinning" @click="spinning">🎊🎊🎊SPINNER🎡🎡🎡</button>
-  <progress v-if="isSpinning" :value="spinTimeCount" :max="IntervalTotalTime"></progress>
   <div class="table-wrapper">
     <table>
       <thead>
@@ -67,12 +26,11 @@ function spinning() {
           <th class="name-column">🛎️식당</th>
           <th class="phone-column">📞전화</th>
           <th class="distance-column">🔭거리</th>
-          <th class="action-column">*</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="restaurant in props.restaurants" :data-focus="restaurant.id === props.focusedRestaurant?.id"
-          :data-spin="restaurant.id === spinTempRestaurant?.id" @click="emit('focus', restaurant.id)">
+        <tr v-for="restaurant in props.restaurants" :id="restaurant.id"
+          :data-focus="restaurant.id === props.focusedRestaurant?.id" @click="emit('focus', restaurant.id)">
           <td class="category-column">
             {{ humanizeRestaurantCategory(restaurant.category) }}
           </td>
@@ -86,9 +44,11 @@ function spinning() {
               {{ restaurant.phone }}
             </a>
           </td>
-          <td class="distance-column">{{ restaurant.distance.toFixed(2) }}m</td>
-          <td class="action-column">
-            <button type="button" @click="openFindWayTo(restaurant.name, restaurant.position)">🚩</button>
+          <td class="distance-column">
+            <a target="_blank"
+              :href="`https://map.kakao.com/link/to/${restaurant.name},${restaurant.position.latitude},${restaurant.position.longitude}`">
+              {{ restaurant.distance.toFixed(2) }}m
+            </a>
           </td>
         </tr>
       </tbody>
@@ -154,9 +114,6 @@ td.distance-column {
 th.action-column {
   width: 5em;
 }
-
-
-
 
 tr[data-focus="true"] {
   background-color: aquamarine;

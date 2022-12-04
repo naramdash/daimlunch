@@ -13,7 +13,6 @@ import GitHub from './components/GitHub.vue';
 
 const filteredRestaurants = ref(DistanceCalcedRestaurants)
 const focusedRestaurant = ref<Restaurant>()
-const isSpinning = ref(false)
 
 function filterRestaurants(categories: RestaurantCategory[], distance: number) {
   const categoryFiltered = categories.length === 0
@@ -31,14 +30,6 @@ function onUnfocus() {
   focusedRestaurant.value = undefined
 }
 
-function onSpinStart() {
-  isSpinning.value = true
-}
-
-function onSpinEnd() {
-  isSpinning.value = false
-}
-
 </script>
 
 <template>
@@ -52,9 +43,8 @@ function onSpinEnd() {
     </header>
     <Kakaomap :restaurants="DistanceCalcedRestaurants" :filteredRestaurants="filteredRestaurants"
       :focusedRestaurant="focusedRestaurant" @focus="onFocus" @unfocus="onUnfocus" />
-    <Filter :isSpinning="isSpinning" @change="filterRestaurants" />
-    <Result :isSpinning="isSpinning" :restaurants="filteredRestaurants" :focusedRestaurant="focusedRestaurant"
-      @focus="onFocus" @spin-start="onSpinStart" @spin-end="onSpinEnd" />
+    <Filter @change="filterRestaurants" />
+    <Result :restaurants="filteredRestaurants" :focusedRestaurant="focusedRestaurant" @focus="onFocus" />
   </div>
 </template>
 

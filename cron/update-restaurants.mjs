@@ -20,6 +20,8 @@ const response = await fetch(endpoint, requestOptions).then((response) =>
 
 const latestRestaurants = response.data.Restaurants;
 
+console.log(`latestRestaurants count: ${latestRestaurants.length}`);
+
 const originFileString = fs.readFileSync(filePath).toString();
 const fileHeader = originFileString.split("\n").slice(0, 4).join("\n");
 const updateFileString = fileHeader + "\n" + JSON.stringify(latestRestaurants);

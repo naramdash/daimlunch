@@ -22,11 +22,17 @@ jobs:
       - run: echo "ya"
       - name: 'Update restrauants'
         run: node ./cron/update-restaurants.mjs
-      - name: Commit changes
-        uses: EndBug/add-and-commit@v9
-        with:
-          message: 'scheduled restaurants updated'
+      - name: "Push Updated"
+        run: |
+          git config user.name naram.dash
+          git config user.email juho_kim@outlook.com
+          git add .
+          git commit -m "Restaurants Updated by GitHub Action Scheduled"
+          git push
         
   call_main_ci_cd:
     needs: update_restrauants
     uses: ./.github/workflows/azure-static-web-apps-blue-water-02a9f0300.yml
+    secrets: 
+      AZURE_STATIC_WEB_APPS_API_TOKEN_BLUE_WATER_02A9F0300: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_BLUE_WATER_02A9F0300 }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

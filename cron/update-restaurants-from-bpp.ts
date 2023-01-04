@@ -1,5 +1,3 @@
-import fs from "fs";
-
 const filePath = "./src/data/RawRestaurants.ts";
 const allowedCategories = [
   "56111",
@@ -35,7 +33,7 @@ const response = await fetch(
       "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
       pragma: "no-cache",
       "sec-ch-ua":
-        '"Not?A_Brand";v="8", "Chromium";v="108", "Google Chrome";v="108"',
+      '"Not?A_Brand";v="8", "Chromium";v="108", "Google Chrome";v="108"',
       "sec-ch-ua-mobile": "?0",
       "sec-ch-ua-platform": '"Windows"',
       "sec-fetch-dest": "empty",
@@ -53,8 +51,8 @@ const response = await fetch(
 ).then((res) => res.json());
 const locations = response.COMPANY_REC;
 const latestRestaurants = locations
-  .flatMap((location) =>
-    location.SAME_DIS_COMP_REC.map((restaurant) => ({
+  .flatMap((location: any) =>
+    location.SAME_DIS_COMP_REC.map((restaurant: any) => ({
       id: `${restaurant.COMPANY_ID}-${restaurant.ZP_COMPANY_ID}`,
       category: restaurant.UPJONG_CODE,
       name: restaurant.COMPANY_NM,
@@ -66,14 +64,14 @@ const latestRestaurants = locations
       phone: restaurant.COMPANY_PHONE,
     }))
   )
-  .filter((restaurant) => allowedCategories.includes(restaurant.category));
+  .filter((restaurant: any) => allowedCategories.includes(restaurant.category));
 
 console.log(`latestRestaurants count: ${latestRestaurants.length}`);
 
-const originFileString = fs.readFileSync(filePath).toString();
+const originFileString = Deno.readTextFileSync(filePath);
 const fileHeader = originFileString.split("\n").slice(0, 4).join("\n");
 const updateFileString = fileHeader + "\n" + JSON.stringify(latestRestaurants);
 
-fs.writeFileSync(filePath, updateFileString);
+Deno.writeTextFileSync(filePath, updateFileString);
 
 console.log(`${new Date().toLocaleString("ko-kr")}: UPDATE COMPLETE`);

@@ -1,5 +1,3 @@
-import fs from "fs";
-
 // CONST - START
 const endpoint = "https://dl-server-production.up.railway.app/gql";
 const graphql = JSON.stringify({
@@ -22,10 +20,10 @@ const latestRestaurants = response.data.Restaurants;
 
 console.log(`latestRestaurants count: ${latestRestaurants.length}`);
 
-const originFileString = fs.readFileSync(filePath).toString();
+const originFileString = Deno.readTextFileSync(filePath);
 const fileHeader = originFileString.split("\n").slice(0, 4).join("\n");
 const updateFileString = fileHeader + "\n" + JSON.stringify(latestRestaurants);
 
-fs.writeFileSync(filePath, updateFileString);
+Deno.writeTextFileSync(filePath, updateFileString);
 
 console.log(`${new Date().toLocaleString()}: UPDATE COMPLETE`);

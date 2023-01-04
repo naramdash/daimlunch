@@ -21,4 +21,6 @@ jobs:
         uses: EndBug/add-and-commit@v9
         with:
           message: 'scheduled restaurants updated'
-      - uses: ./.github/workflows/azure-static-web-apps-blue-water-02a9f0300.yml@main
+  call_main_ci_cd:
+    needs: update_restrauants
+    uses: ./.github/workflows/azure-static-web-apps-blue-water-02a9f0300.yml@main

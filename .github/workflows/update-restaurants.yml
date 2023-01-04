@@ -1,9 +1,12 @@
 name: Update Restaurants - Scheduled
 
 on: 
+  push:
+    branches:
+      - "main"
   schedule:
-    - cron: '10,20,30,40,50 * * * 1-5'
-    # - cron: '2 0 * * 1-5'
+    # - cron: '10,20,30,40,50 * * * 1-5'
+    - cron: '2 0 * * 1-5'
 
 jobs:
   update_restrauants:
@@ -16,12 +19,14 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
+      - run: echo "ya"
       - name: 'Update restrauants'
         run: node ./cron/update-restaurants.mjs
       - name: Commit changes
         uses: EndBug/add-and-commit@v9
         with:
           message: 'scheduled restaurants updated'
+        
   call_main_ci_cd:
     needs: update_restrauants
     uses: ./.github/workflows/azure-static-web-apps-blue-water-02a9f0300.yml

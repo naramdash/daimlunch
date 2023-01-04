@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Update restrauants
     steps:
-        - name: "Call bullet-hell"
+        - name: Call the-bullet-hell
           run: curl https://dl-server-production.up.railway.app/api/bullet-hell
-        - name: "DONE"
-          run: "BULLET-HELL DONE"
+        - name: DONE
+          run: echo "BULLET-HELL DONE"

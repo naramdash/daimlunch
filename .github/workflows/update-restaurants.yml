@@ -20,7 +20,7 @@ jobs:
         with:
           node-version: 18
       - name: 'Update restrauants'
-        run: node ./cron/update-restaurants.mjs
+        run: node ./cron/update-restaurants-from-bpp.mjs
       - name: "Push Updated"
         run: |
           git config user.name naram.dash

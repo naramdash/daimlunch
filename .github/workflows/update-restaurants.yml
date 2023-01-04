@@ -2,20 +2,24 @@ name: Update Restaurants - Scheduled
 
 on: 
   schedule:
-    - cron: '* * * * *'
+    - cron: '2 0 * * 1-5'
 
 jobs:
   update_restrauants:
     runs-on: ubuntu-latest
     name: Update restrauants
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           submodules: true
-      - name: 'hi'
-        run: |
-          date > generated.txt
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: 'Update restrauants'
+        run: node ./cron/update-restaurants.mjs
       - name: Commit changes
         uses: EndBug/add-and-commit@v9
         with:
           message: 'scheduled restaurants updated'
+      - name: Call Main CI/CD
+        uses: naramdash/daimlunch/.github/workflows/azure-static-web-apps-blue-water-02a9f0300.yml@main

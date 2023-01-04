@@ -2,7 +2,8 @@ name: Update Restaurants - Scheduled
 
 on: 
   schedule:
-    - cron: '2 0 * * 1-5'
+    - cron: '10,20,30,40,50 * * * 1-5'
+    # - cron: '2 0 * * 1-5'
 
 jobs:
   update_restrauants:

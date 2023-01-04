@@ -21,5 +21,4 @@ jobs:
         uses: EndBug/add-and-commit@v9
         with:
           message: 'scheduled restaurants updated'
-      - name: Call Main CI/CD
-        uses: naramdash/daimlunch/.github/workflows/azure-static-web-apps-blue-water-02a9f0300.yml@main
+      - uses: naramdash/daimlunch/.github/workflows/azure-static-web-apps-blue-water-02a9f0300.yml@main

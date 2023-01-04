@@ -1,0 +1,18 @@
+name: Refresh Database - Scheduled
+
+on: 
+  push:
+    branches:
+      - "main"
+  schedule:
+    - cron: '10 0 * * 1-5'
+
+jobs:
+  update_restrauants:
+    runs-on: ubuntu-latest
+    name: Update restrauants
+    steps:
+        - name: "Call bullet-hell"
+          run: curl https://dl-server-production.up.railway.app/api/bullet-hell
+        - name: "DONE"
+          run: "BULLET-HELL DONE"

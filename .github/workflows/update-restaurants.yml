@@ -33,6 +33,6 @@ jobs:
   call_main_ci_cd:
     needs: update_restrauants
     uses: ./.github/workflows/azure-static-web-apps-blue-water-02a9f0300.yml
-    secrets: 
-      AZURE_STATIC_WEB_APPS_API_TOKEN_BLUE_WATER_02A9F0300: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_BLUE_WATER_02A9F0300 }}
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    secrets: inherit
+      # AZURE_STATIC_WEB_APPS_API_TOKEN_BLUE_WATER_02A9F0300: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_BLUE_WATER_02A9F0300 }}
+      # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

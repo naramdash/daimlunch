@@ -1,0 +1,19 @@
+name: Update Restaurants - Scheduled
+
+on: 
+  schedule:
+    - cron: '2 * * * *'
+
+jobs:
+  update_restrauants:
+    runs-on: ubuntu-latest
+    name: Update restrauants
+    steps:
+      - uses: actions/checkout@v3
+      - run: |
+          date > generated.txt
+          git config user.name naram.dash
+          git config user.email juho_kim@outlook.com
+          git add .
+          git commit -m "generated"
+          git push

@@ -2,18 +2,20 @@ name: Update Restaurants - Scheduled
 
 on: 
   schedule:
-    - cron: '2 * * * *'
+    - cron: '2,8,10 * * * *'
 
 jobs:
   update_restrauants:
     runs-on: ubuntu-latest
     name: Update restrauants
     steps:
-      - uses: actions/checkout@v3
-      - run: |
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+      - name: 'hi'
+        run: |
           date > generated.txt
-          git config user.name naram.dash
-          git config user.email juho_kim@outlook.com
-          git add .
-          git commit -m "generated"
-          git push
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v9
+        with:
+          message: 'scheduled restaurants updated'

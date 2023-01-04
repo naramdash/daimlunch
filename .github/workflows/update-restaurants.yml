@@ -20,8 +20,8 @@ jobs:
         with:
           deno-version: "1.29.1"
       - name: 'Update restrauants'
-        run: deno run --allow-net --allow-read --allow-write ./cron/update-restaurants-from-bpp.ts
-        # run: deno run --allow-net --allow-read --allow-write ./cron/update-restaurants.ts
+        # run: deno run --allow-net --allow-read --allow-write ./cron/update-restaurants-from-bpp.ts
+        run: deno run --allow-net --allow-read --allow-write ./cron/update-restaurants.ts
         # run: node ./cron/update-restaurants-from-bpp.mjs
         # run: node ./cron/update-restaurants.mjs
       - name: "Push Updated"

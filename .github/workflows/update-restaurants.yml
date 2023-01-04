@@ -23,4 +23,4 @@ jobs:
           message: 'scheduled restaurants updated'
   call_main_ci_cd:
     needs: update_restrauants
-    uses: ./.github/workflows/azure-static-web-apps-blue-water-02a9f0300.yml@main
+    uses: ./.github/workflows/azure-static-web-apps-blue-water-02a9f0300.yml
